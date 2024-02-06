@@ -1,5 +1,5 @@
-resource "aws_db_instance" "default" {
-  identifier                 = var.db_instance_identifier
+resource "aws_db_instance" "rds_instance" {
+  identifier                 = var.rds_instance_db_instance_identifier
   allocated_storage          = var.allocated_storage
   storage_type               = var.storage_type
   engine                     = var.engine
@@ -9,7 +9,7 @@ resource "aws_db_instance" "default" {
   password                   = var.db_password
 
   vpc_security_group_ids     = [aws_security_group.rds_security_group.id]
-  db_subnet_group_name       = aws_db_subnet_group.my_db_subnet_group.name
+  db_subnet_group_name       = aws_db_subnet_group.rds_instance_db_subnet_group.name
 
   backup_retention_period    = var.backup_retention_period
   backup_window              = var.backup_window
@@ -20,7 +20,7 @@ resource "aws_db_instance" "default" {
 
   # Enable enhanced monitoring
   monitoring_interval         = var.monitoring_interval # Interval in seconds (minimum 60 seconds)
-  monitoring_role_arn         = aws_iam_role.rds_monitoring_role.arn
+  monitoring_role_arn         = aws_iam_role.rds_instance_monitoring_role.arn
 
   # Enable performance insights
   performance_insights_enabled = var.performance_insights_enabled

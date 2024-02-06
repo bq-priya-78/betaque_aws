@@ -1,4 +1,4 @@
-resource "aws_kms_key" "key" {
+resource "aws_kms_key" "kms_key" {
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
   enable_key_rotation      = true
   key_usage                = "ENCRYPT_DECRYPT"
