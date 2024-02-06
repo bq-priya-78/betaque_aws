@@ -8,7 +8,7 @@ resource "aws_db_instance" "rds_instance" {
   username                   = var.db_username
   password                   = var.db_password
 
-  vpc_security_group_ids     = [aws_security_group.rds_security_group.id]
+  vpc_security_group_ids     = [aws_security_group.rds_instance_security_group.id]
   db_subnet_group_name       = aws_db_subnet_group.rds_instance_db_subnet_group.name
 
   backup_retention_period    = var.backup_retention_period

@@ -5,7 +5,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   cpu                      = var.task_def_cpu
   memory                   = var.task_def_memory
   execution_role_arn       = aws_iam_role.ecsTaskExecutionRole.arn
-  container_definitions = var.container_definitions_path
+  container_definitions    = var.container_definitions_path
   lifecycle {
     ignore_changes = [
       task_role_arn,

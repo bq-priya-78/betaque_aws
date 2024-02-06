@@ -1,14 +1,12 @@
-## Service Discovery Namespace used by all services ##
 resource "aws_service_discovery_private_dns_namespace" "ecs-service-namespace" {
   count       = var.enable_service_discovery ? 1 : 0
-  name        = var.ecs_service_name
+  name        = var.aws_ecs_service_name
   vpc         = var.vpc_id
 }
 
-## Sample Discovery service ##
 resource "aws_service_discovery_service" "ecs_service_discovery" {
   count = var.enable_service_discovery ? 1 : 0
-  name  = var.ecs_service_name
+  name  = var.aws_ecs_service_name
   dns_config {
     namespace_id = aws_service_discovery_private_dns_namespace.ecs-service-namespace[0].id
     dns_records {
